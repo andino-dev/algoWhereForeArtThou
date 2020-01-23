@@ -4,20 +4,23 @@ Make a function that looks through an array of objects (first argument) and retu
 
 function whatIsInAName(collection, source) {
   // What's in a name?
-  var arr = collection.filter(function(item){
-    for(var i in source){
-      if(source[i]!=item[i]){
-return false;
-      }
-      return true;
-    }
-  });
   // Only change code below this line
+var srcKeys = Object.keys(source);
+return collection.filter(function(obj){
+  for(var i =0;i<srcKeys.length;i++){
+    if(!obj.hasOwnProperty(srcKeys[i])||
+    obj[srcKeys[i]]!==source[srcKeys[i]])
+    {
+      return false;
+    }  
+  }
+  return false;
+});
 
   // Only change code above this line
-  return arr;
 }
 
-console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }));
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+
 
 ```
